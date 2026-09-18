@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .dashboard {
+            background: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            background: #dc3545;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #b02a37;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dashboard">
+        <h1>Welcome, <span id="userName"></span>!</h1>
+        <p>You have successfully logged in.</p>
+
+        <button id="logoutButton">Log Out</button>
+    </div>
+
+    <script>
+        const userName = localStorage.getItem("userName");
+
+        // If there is no logged-in user, return to login page
+        if (!userName) {
+            window.location.href = "/index.html";
+        } else {
+            document.getElementById("userName").textContent = userName;
+        }
+
+        // Log out
+        document.getElementById("logoutButton").addEventListener("click", () => {
+            localStorage.removeItem("userName");
+            window.location.href = "/index.html";
+        });
+    </script>
+
+</body>
+</html>
